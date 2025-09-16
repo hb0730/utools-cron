@@ -1,0 +1,36 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景圆形 -->
+  <circle cx="64" cy="64" r="60" fill="#18a058" stroke="#ffffff" stroke-width="4"/>
+  
+  <!-- 时钟表盘 -->
+  <circle cx="64" cy="64" r="45" fill="#ffffff" stroke="#18a058" stroke-width="2"/>
+  
+  <!-- 12点标记 -->
+  <rect x="62" y="24" width="4" height="8" fill="#18a058"/>
+  <!-- 3点标记 -->
+  <rect x="96" y="62" width="8" height="4" fill="#18a058"/>
+  <!-- 6点标记 -->
+  <rect x="62" y="96" width="4" height="8" fill="#18a058"/>
+  <!-- 9点标记 -->
+  <rect x="24" y="62" width="8" height="4" fill="#18a058"/>
+  
+  <!-- 时针指向2点 -->
+  <line x1="64" y1="64" x2="80" y2="45" stroke="#333333" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- 分针指向12点 -->
+  <line x1="64" y1="64" x2="64" y2="35" stroke="#333333" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- 中心点 -->
+  <circle cx="64" cy="64" r="4" fill="#333333"/>
+  
+  <!-- Cron 符号装饰 -->
+  <text x="64" y="115" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#18a058">CRON</text>
+  
+  <!-- 星号装饰 (代表通配符) -->
+  <text x="25" y="25" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#18a058">*</text>
+  <text x="103" y="25" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#18a058">*</text>
+  
+  <!-- 问号装饰 (代表Quartz的?符号) -->
+  <text x="25" y="110" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#666666">?</text>
+  <text x="103" y="110" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#666666">?</text>
+</svg>

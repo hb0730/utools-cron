@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Refresh } from '@element-plus/icons-vue'
 import type { CronType } from '@/types'
@@ -79,6 +79,35 @@ function clearConverter() {
   sourceExpression.value = ''
   convertResult.value = ''
 }
+
+// 处理从 utools 传入的 Cron 表达式
+function handleUtoolsCronParse(event: CustomEvent) {
+  const { expression } = event.detail
+  console.log('CronConverter 接收到表达式:', expression)
+
+  if (expression) {
+    sourceExpression.value = expression
+
+    // 根据表达式字段数自动判断类型
+    const fields = expression.trim().split(/\s+/)
+    if (fields.length === 5) {
+      fromType.value = 'linux'
+    }
+    else if (fields.length === 6) {
+      fromType.value = 'spring'
+    }
+  }
+}
+
+// 组件挂载时添加事件监听
+onMounted(() => {
+  window.addEventListener('utools-cron-parse', handleUtoolsCronParse as EventListener)
+})
+
+// 组件卸载时移除事件监听
+onUnmounted(() => {
+  window.removeEventListener('utools-cron-parse', handleUtoolsCronParse as EventListener)
+})
 </script>
 
 <template>

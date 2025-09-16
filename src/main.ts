@@ -22,7 +22,7 @@ app.config.errorHandler = (err, vm, info) => {
 }
 
 // 捕获未处理的Promise错误
-window.addEventListener('unhandledrejection', event => {
+window.addEventListener('unhandledrejection', (event) => {
   console.error('未处理的Promise错误:', event.reason)
   event.preventDefault()
 })

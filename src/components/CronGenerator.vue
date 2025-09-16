@@ -70,19 +70,30 @@ function handleUtoolsCronInput(event: any) {
   const { expression } = event.detail
   if (expression) {
     currentExpression.value = expression
+
+    // 根据表达式字段数自动判断类型
+    const fields = expression.trim().split(/\s+/)
+    if (fields.length === 5) {
+      cronType.value = 'linux'
+    }
+    else if (fields.length === 6) {
+      cronType.value = 'spring'
+    }
+
     // 自动解析表达式
     parseExpression()
-    ElMessage.success(`已载入Cron表达式: ${expression}`)
   }
 }
 
 // 生命周期钩子
 onMounted(() => {
   window.addEventListener('utools-cron-input', handleUtoolsCronInput)
+  window.addEventListener('utools-cron-parse', handleUtoolsCronInput)
 })
 
 onUnmounted(() => {
   window.removeEventListener('utools-cron-input', handleUtoolsCronInput)
+  window.removeEventListener('utools-cron-parse', handleUtoolsCronInput)
 })
 </script>
 

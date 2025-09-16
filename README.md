@@ -51,7 +51,7 @@
 ### 格式转换器
 一键转换不同格式的 Cron 表达式：
 - Linux → Spring/Quartz
-- Spring → Linux/Quartz  
+- Spring → Linux/Quartz
 - Quartz → Linux/Spring
 
 ## 🚀 快速开始
@@ -144,7 +144,7 @@ uhool-cron/
 
 **hb0730**
 - GitHub: [@hb0730](https://github.com/hb0730)
-- 主页: [https://github.com/hb0730/uhool-cron](https://github.com/hb0730/uhool-cron)
+- 主页: [https://github.com/hb0730/utools-cron](https://github.com/hb0730/utools-cron)
 
 ## 🙏 致谢
 

@@ -1,0 +1,32 @@
+{
+  "name": "Cron表达式工具",
+  "description": "支持Linux/Spring/Quartz三种Cron表达式的生成、解析、转换工具",
+  "author": "hb0730",
+  "homepage": "https://github.com/hb0730/uhool-cron",
+  "version": "1.0.0",
+  "logo": "logo.png",
+  "platform": ["win32", "darwin", "linux"],
+  "main": "index.html",
+  "features": [
+    {
+      "code": "cron",
+      "explain": "Cron表达式工具",
+      "cmds": [
+        "cron",
+        "定时任务",
+        "计划任务",
+        "crontab",
+        "quartz",
+        "spring cron",
+        {
+          "type": "over",
+          "label": "Cron表达式匹配",
+          "exclude": "/^[a-zA-Z\\u4e00-\\u9fa5]+$/"
+        }
+      ]
+    }
+  ],
+  "development": {
+    "main": "http://localhost:5174"
+  }
+}

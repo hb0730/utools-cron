@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
+import { nextTick, ref } from 'vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import ThemeSwitch from './components/ThemeSwitch.vue'
 import CronGenerator from './components/CronGenerator.vue'
@@ -37,7 +37,7 @@ window.addEventListener('theme-change', handleThemeChange)
 // 判断是否为标准Cron表达式的工具函数
 function isStandardCronExpression(input: string): boolean {
   // 简化的Cron表达式正则 - 包含数字、*、?、/、字母、空格、-
-  const cronRegex = /^[\d\*\?/A-Z\s-]+$/i
+  const cronRegex = /^[\d*?/A-Z\s-]+$/i
   return cronRegex.test(input.trim()) && input.trim().split(/\s+/).length >= 5
 }
 
@@ -45,32 +45,33 @@ function isStandardCronExpression(input: string): boolean {
 if (window.utools) {
   window.utools.onPluginEnter((action) => {
     console.log('uTools plugin enter', action)
-    
-    // 如果是通过regex进入的，根据输入类型智能切换页面
-    if (action && action.code === 'cron' && action.type === 'regex') {
+
+    // 如果是通过over或regex进入的，根据输入类型智能切换页面
+    if (action && action.code === 'cron') {
       const input = action.payload || ''
       console.log('Input detected:', input)
-      
+
       if (isStandardCronExpression(input)) {
-        // 标准Cron表达式，切换到转换器页面进行解析
-        console.log('Detected standard cron expression, switching to converter')
-        activeTab.value = 'converter'
-        
+        // 标准Cron表达式，切换到生成器页面进行解析和显示
+        console.log('Detected standard cron expression, switching to generator')
+        activeTab.value = 'generator'
+
         nextTick(() => {
-          // 派发自定义事件来通知CronConverter组件
+          // 派发自定义事件来通知CronGenerator组件
           window.dispatchEvent(new CustomEvent('utools-cron-parse', {
-            detail: { expression: input.trim() }
+            detail: { expression: input.trim() },
           }))
         })
-      } else {
+      }
+      else {
         // 中文描述，切换到生成器页面
         console.log('Detected natural language input, switching to generator')
         activeTab.value = 'generator'
-        
+
         nextTick(() => {
           // 派发自定义事件来通知CronGenerator组件
           window.dispatchEvent(new CustomEvent('utools-cron-generate', {
-            detail: { description: input.trim() }
+            detail: { description: '' },
           }))
         })
       }
