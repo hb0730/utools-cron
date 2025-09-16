@@ -5,34 +5,13 @@ import ThemeSwitch from './components/ThemeSwitch.vue'
 import CronGenerator from './components/CronGenerator.vue'
 import CronConverter from './components/CronConverter.vue'
 import ApiTester from './components/ApiTester.vue'
+import { useTheme } from './composables/useTheme'
 
 // 标签页状态
 const activeTab = ref('generator')
 
-// 主题状态（由ThemeSwitch组件管理）
-const isDark = ref(false)
-
-// 监听主题变化事件
-function handleThemeChange(event: any) {
-  isDark.value = event.detail.isDark
-}
-
-// 初始化主题状态
-function initTheme() {
-  const savedTheme = localStorage.getItem('theme')
-  if (savedTheme) {
-    isDark.value = savedTheme === 'dark'
-  }
-  else {
-    isDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
-  }
-}
-
-// 初始化
-initTheme()
-
-// 监听主题变化事件
-window.addEventListener('theme-change', handleThemeChange)
+// 使用统一的主题管理
+const { isDark } = useTheme()
 
 // 判断是否为标准Cron表达式的工具函数
 function isStandardCronExpression(input: string): boolean {
